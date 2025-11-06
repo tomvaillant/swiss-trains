@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <title>Swiss Alps Journey</title>
+
+        <!-- Resource hints for faster loading -->
+        <link rel="preconnect" href="https://www.20min.ch" />
+        <link rel="preconnect" href="https://cdn.maptiler.com" />
+        <link rel="dns-prefetch" href="https://www.20min.ch" />
+        <link rel="dns-prefetch" href="https://cdn.maptiler.com" />
+
+        <!-- Script to detect mobile devices -->
+        <script>
+            // Inline script to set a flag for mobile detection
+            window.isMobile = window.innerWidth <= 768;
+            // Add a specific class to the body for mobile-specific optimizations
+            document.documentElement.classList.add(window.isMobile ? 'mobile' : 'desktop');
+        </script>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://www.20min.ch/static-assets/batonturbo.css" />
+        <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.umd.min.js"></script>
+        <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.css" rel="stylesheet" />
+        <!-- Importing MapTiler 3D js -->
+        <script src="https://cdn.maptiler.com/maptiler-3d/v2.1.0/maptiler-3d.umd.min.js"></script>
+        <script src="https://unpkg.com/scrollama"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+
+        <!-- Import map for SBB Lyne Components dependencies -->
+        <script type="importmap">
+            {
+                "imports": {
+                    "tslib": "https://unpkg.com/tslib@2.6.2/tslib.es6.mjs",
+                    "lit": "https://unpkg.com/lit@3.1.0/index.js",
+                    "lit/": "https://unpkg.com/lit@3.1.0/",
+                    "@lit/reactive-element": "https://unpkg.com/@lit/reactive-element@2.0.4/reactive-element.js",
+                    "@lit/reactive-element/": "https://unpkg.com/@lit/reactive-element@2.0.4/",
+                    "lit-html": "https://unpkg.com/lit-html@3.1.0/lit-html.js",
+                    "lit-html/": "https://unpkg.com/lit-html@3.1.0/",
+                    "lit-element/lit-element.js": "https://unpkg.com/lit-element@4.0.4/lit-element.js"
+                }
+            }
+        </script>
+
+        <!-- SBB Lyne Components CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/@sbb-esta/lyne-elements@3.12.1/core.css">
+
+        <!-- SBB Lyne Components -->
+        <script type="module" src="https://unpkg.com/@sbb-esta/lyne-elements@3.12.1/clock.js"></script>
+
+        <link rel="stylesheet" href="./styles.css" />
+
+        <meta name="robots" content="noindex, nofollow" />
+    </head>
+    <body>
+        <!-- Loader with SBB Clock (separate from Svelte) -->
+        <div id="loader-container">
+            <div class="loader-content">
+                <sbb-clock></sbb-clock>
+                <div id="loader-text">Loading...</div>
+                <div class="loader-progress-bar">
+                    <div id="loader-progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="app"></div>
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>

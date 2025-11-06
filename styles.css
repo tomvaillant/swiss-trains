@@ -1,0 +1,228 @@
+@font-face {
+    font-family: 'BatonTurbo';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('BatonTurbo Regular');
+}
+@font-face {
+    font-family: 'BatonTurbo';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('BatonTurbo Medium');
+}
+
+:root,
+body {
+    font-family: 'BatonTurbo', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Loader styles (outside Svelte) */
+#loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+}
+
+#loader-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+}
+
+.loader-content sbb-clock {
+    width: 100px;
+    height: 100px;
+}
+
+#loader-text {
+    font-family: 'BatonTurbo', sans-serif;
+    color: #3a2a1a;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.loader-progress-bar {
+    width: 200px;
+    height: 6px;
+    background-color: rgba(245, 235, 220, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+#loader-progress-fill {
+    height: 100%;
+    background-color: #8b1a1a;
+    border-radius: 3px;
+    transition: width 0.3s ease-out;
+}
+
+/* Apply hardware acceleration to animation elements */
+* {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* We've removed mobile-specific animation optimizations but kept other performance improvements */
+
+main {
+    height: 100vh;
+    position: relative;
+    max-width: none;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.scrollytelling {
+    display: grid;
+    grid-template-columns: 40vw;
+    justify-content: left;
+    padding-left: 5vw;
+    gap: 90vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: 50vh;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.sizer {
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.textbox {
+    text-align: left;
+    padding: 1.5rem;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #3a2a1a;
+    background-color: rgba(245, 235, 220, 0.95);
+    line-height: 150%;
+    border-radius: 8px;
+    max-width: 30vw;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transform: translateZ(0); /* Force GPU rendering */
+    border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.textbox span {
+    background-color: #d4af37;
+    color: #3a2a1a;
+    font-weight: bold;
+    padding: 2px 6px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.textbox strong {
+    display: block;
+    color: #8b1a1a;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.time-stamp {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #00d5ff;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    /* Mobile optimizations */
+    .scrollytelling {
+        grid-template-columns: 85vw; /* Slightly wider for readability */
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .textbox {
+        font-size: 0.95rem;
+        max-width: 90%; /* Full width of container */
+        padding: 1.2rem; /* Slightly smaller padding */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .textbox strong {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/* Maptiler attribution */
+.credit-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    position: sticky;
+    bottom: 20px;
+    z-index: 1;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.credit {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    color: black;
+    margin-left: auto;
+    pointer-events: auto; /* Re-enable clicks just for the credit element */
+}
+
+.maptiler-logo img {
+    height: 20px;
+    /* Optimize image rendering */
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Add smooth class transitions for better perceived performance */
+.active {
+    transition: opacity 0.3s ease-out;
+}
+
+/* Create an optimized layout for the mobile view */
+@media (max-width: 480px) {
+    .scrollytelling {
+        grid-template-columns: 80vw;
+        justify-content: center;
+        padding-left: 0vw;
+    }
+
+    .maptiler-logo img {
+        height: 25px; /* Smaller logo on mobile */
+    }
+}

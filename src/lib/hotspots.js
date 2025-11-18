@@ -11,7 +11,7 @@ export const hotspots = [
         id: 'hotspot-2',
         coordinates: [8.55, 47.36667], // Zurich
         image: 'DO1000930.jpg',
-        title: 'Zurich Hauptbahnhof',
+        title: 'Zurich',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'
     },
     {

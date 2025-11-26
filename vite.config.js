@@ -3,7 +3,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
     plugins: [svelte()],
-    base: '/swisstopo/',
+    base: '/swiss-trains/',
     server: {
         port: 3000,
         open: true

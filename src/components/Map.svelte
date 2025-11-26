@@ -33,7 +33,7 @@
     }
 
     async function initializeMap() {
-        window.maptilersdk.config.apiKey = 'L1pxMIEc78RDmw6G2tIP';
+        window.maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
 
         // Get initial position based on mode
         const initialChapter = mode === 'interactive' ? chapters['position-4'] : chapters['position-0'];
@@ -49,7 +49,7 @@
 
         map = new window.maptilersdk.Map({
             container: 'map',
-            style: '019a5809-86bc-788c-86bb-aed00df4c85d',
+            style: '019abf6b-eb5d-7472-9ebc-b064294edcbe',
             center: initialChapter.center,
             zoom: initialZoom,
             bearing: initialChapter.bearing,

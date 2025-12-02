@@ -123,43 +123,43 @@
     <div class="scrollytelling">
         <section id="position-0" class="active">
             <div class="textbox">
-                <strong>Geneva to Biel</strong>
+                <strong>The Challenge Begins</strong>
                 <p class="highlight-text">
-                    This green line traces Johnny's dash to set foot in all 26 Swiss cantons within a single day.
+                    26 cantons. One day. Only public transportation.
                 </p>
-                <img src="DO1000921.jpg" alt="Railway station" class="textbox-image" />
-                Our journey begins in Geneva, following the railway routes through the heart of Western Switzerland.
+                <img src="map-on-train.jpg" alt="Planning the route on the train" class="textbox-image" />
+                Starting before dawn in French-speaking Valais, the canton challenge begins. The route is planned down to the minute—every connection timed to the Taktfahrplan's pulse. Miss one transfer, and the whole day unravels.
             </div>
         </section>
 
         <section id="position-1">
             <div class="textbox">
-                <strong>Biel to Lucerne</strong>
-                <img src="DO1000930.jpg" alt="Railway junction" class="textbox-image" />
-                From Biel, the routes branch outward across the Swiss Plateau. The railway network expands as we approach Lucerne, connecting cities and towns across this central region.
+                <strong>Across the Plateau</strong>
+                <img src="community-3.jpeg" alt="Meeting local guides" class="textbox-image" />
+                Locals from the community join along the way, helping navigate tight transfers and sharing the unspoken rules of Swiss trains. "German trains are always late," one explains. "We don't let them in—we have backup trains waiting at Basel just in case."
             </div>
         </section>
 
         <section id="position-2">
             <div class="textbox">
-                <strong>Around Lucerne</strong>
-                The routes loop and converge around Lucerne, Switzerland's gateway to the Alps. This transportation hub links the northern lowlands with the dramatic mountain passes to the south.
-                <img src="DO1000933.jpg" alt="Lucerne station" class="textbox-image" />
+                <strong>Gateway to the Alps</strong>
+                Lucerne marks the transition. Ahead: the Alps. The railways here began as a way for Victorian British tourists to witness the mountains. That tourism funded increasingly ambitious infrastructure—gondolas, cog railways, tunnels carved inside peaks themselves.
+                <img src="eigergletscher.jpg" alt="At Eigergletscher station" class="textbox-image" />
             </div>
         </section>
 
         <section id="position-3">
             <div class="textbox">
-                <strong>Through the Mountains</strong>
-                Now the journey intensifies. The routes climb through the Alps toward Bellinzona, navigating steep valleys and crossing mountain passes. This is Swiss engineering at its finest — railways carved through some of Europe's most challenging terrain.
-                <img src="DO1000937.jpg" alt="Mountain railway" class="textbox-image" />
+                <strong>Under the Alps</strong>
+                Traveling at 200 km/h through the Gotthard Base Tunnel—57km of engineering beneath 2.5km of rock. The original tunnel took 15 billion francs and dozens of lives to build. It was called their "national spine," the rail equivalent of the Golden Gate Bridge or Great Wall. This is what united Switzerland.
+                <img src="GOTTHARD.jpg" alt="Inside the Gotthard tunnel" class="textbox-image" />
             </div>
         </section>
 
         <section id="position-4" style="margin-bottom: 30vh;">
             <div class="textbox">
-                <strong>The Complete Network</strong>
-                From this overview, you can see the full Swiss railway network — a masterpiece of engineering and planning. Every route tells a story of connection, linking communities across mountains, valleys, and lakes.
+                <strong>A Country Connected</strong>
+                8,000 trains daily. 93% on time. Powered almost entirely by hydroelectric gravity—water falling from these same mountains. The system pulses together every 30 minutes, connecting everywhere to everywhere. It's not just transportation. It's a founding myth made physical.
             </div>
         </section>
     </div>

@@ -5,7 +5,7 @@ export const hotspots = [
         coordinates: [8.54, 47.378], // Zurich HB
         image: 'community1.jpeg',
         title: 'Zurich Central',
-        description: 'Every 30 minutes, the pulse begins. Trains flood in from across Switzerland between :50 and :58, passengers transfer, then trains depart between :02 and :10. This choreographed chaos—the Taktfahrplan—means you never wait more than 10 minutes for a connection.'
+        description: 'Switzerland\'s busiest station and consistently ranked the best train station in Europe.'
     },
     {
         id: 'hotspot-6',
@@ -19,7 +19,7 @@ export const hotspots = [
         coordinates: [7.003, 46.22], // St. Maurice area (Valais)
         image: 'DO1000930.jpg',
         title: 'St. Maurice - Where It Begins',
-        description: 'The canton challenge starts here in French-speaking Valais, before dawn. From this valley in Switzerland\'s southwest, the route fans out across all 26 cantons—every connection timed, every transfer planned down to the minute.'
+        description: 'Johnny\'s 26-canton challenge starts here in French-speaking Valais, before dawn. From this valley in Switzerland\'s southwest, his route fans out to reach all 26 cantons in a single day.'
     },
     {
         id: 'hotspot-2',
@@ -30,10 +30,10 @@ export const hotspots = [
     },
     {
         id: 'hotspot-3',
-        coordinates: [8.65, 46.55], // Gotthard area
+        coordinates: [8.599, 46.55], // Gotthard - on the railway line
         image: 'GOTTHARD.jpg',
         title: 'Inside the Gotthard',
-        description: '57 kilometers of tunnel. 200 km/h. 2.5 kilometers of rock above. This isn\'t just infrastructure—it\'s Switzerland\'s founding myth made physical. When workers emerged in 1882 after digging the world\'s longest tunnel, they\'d proven that engineering could unite a nation divided by language, religion, and mountains.'
+        description: '57 kilometers of tunnel. 200 km/h. 2.5 kilometers of rock above. When workers emerged in 1882 after digging the world\'s longest tunnel, they\'d proven that engineering could unite a nation divided by language, religion, and mountains.'
     },
     {
         id: 'hotspot-4',
@@ -47,6 +47,6 @@ export const hotspots = [
         coordinates: [9.01703, 46.19278], // Bellinzona
         image: 'DO1000937.jpg',
         title: 'Benvenuti in Ticino',
-        description: 'Italian Switzerland. After tunneling under the Alps, you emerge into a different world—palm trees, gelato, and a language shift that reminds you this small country contains multitudes. The Gotthard made this connection possible, turning days of travel into minutes.'
+        description: 'Italian Switzerland. After tunneling under the Alps, you emerge into a different world—palm trees, gelato, and a different language. The Gotthard made this connection possible, turning days of travel into minutes.'
     }
 ];

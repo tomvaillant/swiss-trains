@@ -21,7 +21,7 @@ export const legendLayers = [
     {
         id: 'lines',
         label: 'Railways',
-        description: 'Core SBB railway lines that span the country.',
+        description: 'Core railway lines for SBB, Switzerland\'s largest transport company.',
         color: '#F50A0A',
         shape: 'line'
     },

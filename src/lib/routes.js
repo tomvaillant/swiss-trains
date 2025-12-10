@@ -41,6 +41,16 @@ export const chapters = {
         routeAnimationDuration: 4200
     },
     'position-4': {
+        center: [9.50, 47.01], // End of Johnny's route in eastern Graubunden
+        bearing: 0,
+        pitch: 45,
+        duration: 4000,
+        zoom: 10,
+        zoomDesktop: 10.5,
+        maxRouteIncrement: 100,
+        routeAnimationDuration: 3000
+    },
+    'position-5': {
         center: [8.2275, 46.8182], // Final overview - all routes visible
         bearing: 0,
         pitch: 0,

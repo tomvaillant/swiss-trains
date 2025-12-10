@@ -15,7 +15,7 @@
         1,
         ...Object.values(chapters).map((chapter) => chapter.maxRouteIncrement ?? 0)
     );
-    let currentChapter = mode === 'interactive' ? 'position-4' : 'position-0';
+    let currentChapter = mode === 'interactive' ? 'position-5' : 'position-0';
     let lastScrollStep = null;
     let scrollDebounceTimer = null;
     let navigationControl = null;
@@ -36,10 +36,10 @@
         window.maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
 
         // Get initial position based on mode
-        const initialChapter = mode === 'interactive' ? chapters['position-4'] : chapters['position-0'];
+        const initialChapter = mode === 'interactive' ? chapters['position-5'] : chapters['position-0'];
 
         const isMobileDevice = window.innerWidth <= 768;
-        const overviewChapter = chapters['position-4'];
+        const overviewChapter = chapters['position-5'];
         const overviewMobileZoom = overviewChapter?.zoom ?? 7;
         const overviewDesktopZoom = overviewChapter?.zoomDesktop ?? overviewMobileZoom;
         const minZoom = isMobileDevice ? overviewMobileZoom : overviewDesktopZoom;
@@ -80,6 +80,7 @@
         applyRouteFilter(initialMaxIncrement);
 
         flushPendingLayerVisibility();
+        enhanceStationLayer();
 
         dispatch('mapStatus', { type: 'load' });
 
@@ -99,7 +100,33 @@
         } else if (mode === 'interactive') {
             // Add hotspots only in interactive mode
             setupHotspotsLayer();
+            setupSoftBounds();
         }
+    }
+
+    function setupSoftBounds() {
+        // Soft bounds - gently constrain panning to Switzerland area
+        const switzerlandCenter = [8.2275, 46.8182];
+        const maxPanDistance = 3; // degrees from center
+
+        map.on('moveend', () => {
+            const center = map.getCenter();
+            const dx = center.lng - switzerlandCenter[0];
+            const dy = center.lat - switzerlandCenter[1];
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance > maxPanDistance) {
+                // Ease back toward Switzerland
+                const ratio = maxPanDistance / distance;
+                map.easeTo({
+                    center: [
+                        switzerlandCenter[0] + dx * ratio,
+                        switzerlandCenter[1] + dy * ratio
+                    ],
+                    duration: 300
+                });
+            }
+        });
     }
 
     function setupHotspotsLayer() {
@@ -190,7 +217,7 @@
                     12,
                     10
                 ],
-                'circle-color': '#EB0000',
+                'circle-color': ROUTE_COLOR, // Match Johnny's route green
                 'circle-stroke-color': '#FDFDFB', // Swiss snow white border
                 'circle-stroke-width': [
                     'case',
@@ -298,9 +325,26 @@
             }
 
             const isMobile = window.innerWidth <= 768;
+
+            // Calculate optimal anchor based on hotspot position in viewport
+            const point = map.project(coordinates);
+            const containerHeight = map.getContainer().clientHeight;
+            const containerWidth = map.getContainer().clientWidth;
+
+            let anchor = 'bottom'; // default: popup above hotspot
+            if (point.y < containerHeight * 0.4) {
+                anchor = 'top'; // hotspot near top, show popup below
+            }
+            if (point.x < containerWidth * 0.3) {
+                anchor = anchor === 'top' ? 'top-left' : 'bottom-left';
+            } else if (point.x > containerWidth * 0.7) {
+                anchor = anchor === 'top' ? 'top-right' : 'bottom-right';
+            }
+
             const popup = new window.maptilersdk.Popup({
                 maxWidth: '320px',
                 className: isMobile ? 'hotspot-popup-container hotspot-popup-mobile' : 'hotspot-popup-container',
+                anchor: anchor
             })
                 .setLngLat(coordinates)
                 .setHTML(popupContent)
@@ -474,6 +518,21 @@
         }
     }
 
+    function enhanceStationLayer() {
+        if (!map || !map.getLayer('SBB')) {
+            return;
+        }
+        try {
+            // Increase station circle size by ~25%
+            map.setPaintProperty('SBB', 'circle-radius', 5);
+            // Increase opacity for better visibility
+            map.setPaintProperty('SBB', 'circle-opacity', 0.9);
+            map.setPaintProperty('SBB', 'circle-stroke-opacity', 1);
+        } catch (error) {
+            console.warn('Unable to enhance station layer:', error);
+        }
+    }
+
     function applyLayerVisibility(layerId, visible) {
         if (!map || !map.getLayer(layerId)) {
             return;
@@ -518,7 +577,7 @@
     }
 
     function setupLastTextboxObserver() {
-        const lastTextbox = document.querySelector('#position-4 .textbox');
+        const lastTextbox = document.querySelector('#position-5 .textbox');
 
         if (!lastTextbox) return;
 

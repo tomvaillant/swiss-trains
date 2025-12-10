@@ -284,7 +284,7 @@ main {
 
 /* Hotspot Popup Styles - Premium Swiss Railway Design */
 .hotspot-popup-container {
-    z-index: 500 !important;
+    z-index: 600 !important;
 }
 
 .hotspot-popup-container .maplibregl-popup-content {
@@ -474,11 +474,11 @@ main {
     .hotspot-popup-mobile.maplibregl-popup {
         max-width: 90vw !important;
         position: fixed !important;
-        top: 50% !important;
+        top: calc(50% - 60px) !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
         margin: 0 !important;
-        z-index: 401 !important;
+        z-index: 601 !important;
     }
 
     .hotspot-popup-mobile .maplibregl-popup-content {

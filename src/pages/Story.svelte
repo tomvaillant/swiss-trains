@@ -11,6 +11,13 @@
     let minimumLoadTimeElapsed = false;
     let blockMapInteraction = true;
     let mapComponent;
+    let showScrollBanner = true;
+
+    function handleScrollBanner() {
+        if (typeof window !== 'undefined' && window.scrollY > 30) {
+            showScrollBanner = false;
+        }
+    }
 
     function handleMapStatus(event) {
         const { detail } = event;
@@ -73,6 +80,8 @@
             showMap = true;
         }, 100);
 
+        window.addEventListener('scroll', handleScrollBanner, { passive: true });
+
         // Set minimum load time flag after 2 seconds
         const minLoadTimer = setTimeout(() => {
             minimumLoadTimeElapsed = true;
@@ -98,6 +107,7 @@
             clearTimeout(fallbackTimer);
             clearTimeout(minLoadTimer);
             clearInterval(progressInterval);
+            window.removeEventListener('scroll', handleScrollBanner);
         };
     });
 </script>
@@ -120,6 +130,17 @@
         <div class="map-interaction-blocker"></div>
     {/if}
 
+    {#if showScrollBanner}
+        <div class="scroll-banner">
+            <div class="scroll-banner-pill">
+                <span>Scroll down</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12 5v14m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+        </div>
+    {/if}
+
     <div class="scrollytelling">
         <section id="position-0" class="active">
             <div class="textbox">
@@ -127,7 +148,6 @@
                 <p class="highlight-text">
                     26 cantons. One day. Only public transportation.
                 </p>
-                <p class="scroll-hint">Scroll down</p>
                 <img src="map-on-train.jpg" alt="Planning the route on the train" class="textbox-image" />
                 Starting before dawn in French-speaking Valais, the canton challenge begins. The route is planned down to the minute—timed to the pulse of the Taktfahrplan, Switzerland's unique scheduling system. Miss one transfer, and the whole day unravels.
             </div>
@@ -238,6 +258,52 @@
         pointer-events: all;
     }
 
+    .scroll-banner {
+        position: fixed;
+        bottom: 3vh;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 550;
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    .scroll-banner-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.4rem;
+        background: linear-gradient(135deg,
+            rgba(248, 244, 236, 0.9) 0%,
+            rgba(255, 253, 250, 0.85) 100%);
+        border-radius: 999px;
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.08),
+            0 16px 36px rgba(20, 58, 82, 0.15),
+            0 0 0 1px rgba(235, 0, 0, 0.12);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        color: var(--sbb-red);
+        font-family: var(--font-display);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        pointer-events: auto;
+        animation: floatPulse 2.6s ease-in-out infinite;
+        white-space: nowrap;
+    }
+
+    .scroll-banner-pill svg {
+        color: var(--sbb-red);
+        transform: translateY(1px);
+    }
+
+    @keyframes floatPulse {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+
     @media (max-width: 768px) {
         .back-button {
             top: 1rem;
@@ -249,6 +315,18 @@
         .back-button svg {
             width: 16px;
             height: 16px;
+        }
+
+        .scroll-banner {
+            bottom: 2vh;
+            width: 100%;
+        }
+
+        .scroll-banner-pill {
+            padding: 0.7rem 1.6rem;
+            font-size: 0.9rem;
+            min-width: 230px;
+            justify-content: center;
         }
     }
 </style>

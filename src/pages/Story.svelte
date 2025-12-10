@@ -161,6 +161,7 @@
             <div class="textbox">
                 <strong>Challenge Complete</strong>
                 <p>Johnny completed the 26 canton challenge in one day, arriving at 1:45am in the final canton of Graubunden.</p>
+                <img src="Johnny.jpeg" alt="Johnny completing the canton challenge" class="textbox-image" />
             </div>
         </section>
 
